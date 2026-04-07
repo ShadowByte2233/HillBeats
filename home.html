@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HypeEchoo</title>
+  <link rel="icon" type="image/png" href="images/Logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="images/Logo.png" alt="Logo">
+      <span>HypeEchoo</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Navigation öffnen" data-i18n-aria="nav.burgerLabel">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" data-i18n="nav.home">Startseite</a></li>
+      <li><a href="pages/Description.html" data-i18n="nav.commands">Über uns</a></li>
+      
+    </ul>
+    <!-- Language toggle -->
+    <div class="lang-toggle" id="lang-toggle">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<header id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="images/Shadow Music Avatar.png" alt="Shadow Music Avatar" class="hero-avatar">
+    <h1 id="bot-name">HillBeats</h1>
+    <p class="slogan" data-i18n="hero.slogan"> Sound der Hügel ></p>
+    <p class="hero-desc" data-i18n="hero.description"></p>
+    <div class="hero-buttons">
+    </div>
+  </div>
+</header>
