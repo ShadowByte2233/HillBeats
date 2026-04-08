@@ -55,7 +55,7 @@ const TRANSLATIONS = {
     'nav.media':              'Media',
     'nav.tour':               'Tour',
     'nav.contact':            'Contact',
-    'hero.title':             'Sominatores',
+    'hero.title':             'Somniatores',
     'hero.slogan':            'A better world',
     'hero.listen':            'Listen Now',
     'hero.booking':           'Booking',
