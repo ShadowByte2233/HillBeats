@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>HillBeats</title>
   <meta name="description" content="HillBeats – Dein Musik-Label aus den Hügeln. Aktuelle Releases, Tour-Dates und mehr.">
-  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  <link rel="icon" type="image/png" href="assets/img/band_logo.png">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
 </head>
 <body>
+
+<!-- PROJECT NOTICE (FFH Mediencamp) -->
+<div class="project-notice" role="note">
+  🎓 Schulprojekt im Rahmen des FFH Mediencamp – keine kommerzielle Website
+</div>
 
 <!-- NAVIGATION -->
 <nav id="navbar" role="navigation" aria-label="Hauptnavigation">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo" aria-label="HillBeats – Startseite">
-      <img src="assets/img/logo.svg" alt="HillBeats Logo">
+      <img src="assets/img/band_logo.png" alt="Somniatores / HillBeats Logo">
     </a>
     <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links" data-i18n-aria="nav.burgerLabel">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="#hero"       data-i18n="nav.home">Startseite</a></li>
-      <li><a href="#release"    data-i18n="nav.release">Release</a></li>
-      <li><a href="#about"      data-i18n="nav.about">Über uns</a></li>
-      <li><a href="#media"      data-i18n="nav.media">Media</a></li>
+      <li><a href="#hero"    data-i18n="nav.home">Startseite</a></li>
+      <li><a href="#release" data-i18n="nav.release">Release</a></li>
+      <li><a href="#about"   data-i18n="nav.about">Über uns</a></li>
+      <li><a href="#media"   data-i18n="nav.media">Media</a></li>
     </ul>
     <!-- Language dropdown -->
     <div class="lang-dropdown" id="lang-dropdown">
@@ -44,14 +51,42 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-container">
-    <h1>HillBeats</h1>
-    <p></p>
-    
-    <div class="hero-btns">
-      <a href="#" class="btn btn-primary">Mehr erfahren</a>
+<section id="hero" class="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img"
+         src="assets/img/Hillbeats logo mit 3D-Wellenform.png"
+         alt="">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="hero-band-logo" src="assets/img/band_logo.png" alt="Somniatores Logo">
+    <h1 data-i18n="hero.title">HillBeats</h1>
+    <p class="slogan" data-i18n="hero.slogan">Sound der Hügel</p>
+    <div class="hero-buttons">
+      <a href="#release" class="btn btn-primary"   data-i18n="hero.listen">Jetzt Hören</a>
+      <a href="#about"   class="btn btn-secondary" data-i18n="hero.booking">Booking</a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/img/band_logo.png" alt="HillBeats Logo">
+        <p class="footer-slogan" data-i18n="footer.slogan">Sound der Hügel</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="#hero"    data-i18n="nav.home">Startseite</a>
+        <a href="#release" data-i18n="nav.release">Release</a>
+        <a href="#about"   data-i18n="nav.about">Über uns</a>
+        <a href="#media"   data-i18n="nav.media">Media</a>
+      </nav>
+      <p class="footer-copy" data-i18n="footer.copy">© 2025 HillBeats. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
