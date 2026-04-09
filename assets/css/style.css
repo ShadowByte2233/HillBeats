@@ -524,6 +524,7 @@ footer {
 .footer-logo img    { height: 40px; margin: 0 auto 0.5rem; }
 .footer-slogan      { font-size: 0.875rem; color: var(--color-text-muted); letter-spacing: 0.1em; }
 .footer-nav         { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+.footer-social      { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
 .social-link {
   display: flex;
   align-items: center;
