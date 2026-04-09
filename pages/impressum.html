@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Impressum | HillBeats</title>
 
+  <!-- Seite liegt unter /pages, daher ../assets/... -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <style>
+    .page-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .langbar { display:flex; gap:10px; justify-content:flex-end; margin-bottom: 14px; }
+    .langbar button {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #3a3a3a;
+      background: #1a1a1a;
+      color: #fff;
+      cursor: pointer;
+    }
+    .langbar button[aria-pressed="true"] { border-color: #ff4500; }
+    h1 { margin: 0 0 18px; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+    .card {
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.35);
+      padding: 18px;
+      line-height: 1.55;
+    }
+    .muted { color: #cfcfcf; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid #ff4500; outline-offset: 2px; border-radius: 6px; }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+    <div class="langbar" aria-label="Language switch">
+      <button id="btn-de" type="button">DE</button>
+      <button id="btn-en" type="button">EN</button>
+    </div>
+
+    <h1 data-lang="de">Impressum</h1>
+    <h1 data-lang="en" hidden>Legal Notice</h1>
+
+    <div class="card">
+      <!-- Deutsch -->
+      <div data-lang="de">
+        <p><strong>Institut für Medienpädagogik und Kommunikation Hessen e.V.</strong></p>
+        <p>
+          Forstmeisterstra��e 11<br />
+          64285 Darmstadt<br />
+          Deutschland
+        </p>
+        <p>
+          Tel.: 06151/3605687<br />
+          E-Mail: <a href="mailto:muk@muk-hessen.de">muk@muk-hessen.de</a>
+        </p>
+        <p>
+          <strong>Verantwortlich:</strong><br />
+          1. Vorsitzender Michael Siebel
+        </p>
+        <p class="muted">
+          Eintragung im Vereinsregister<br />
+          Registergericht: Amtsgericht Darmstadt<br />
+          Registernummer: VR 84172
+        </p>
+      </div>
+
+      <!-- Englisch -->
+      <div data-lang="en" hidden>
+        <p><strong>Institute for Media Education and Communication Hesse (registered association)</strong></p>
+        <p>
+          Forstmeisterstraße 11<br />
+          64285 Darmstadt<br />
+          Germany
+        </p>
+        <p>
+          Phone: +49 6151 3605687<br />
+          Email: <a href="mailto:muk@muk-hessen.de">muk@muk-hessen.de</a>
+        </p>
+        <p>
+          <strong>Responsible:</strong><br />
+          Chairman (1st chair): Michael Siebel
+        </p>
+        <p class="muted">
+          Registered in the association register<br />
+          Register court: Local Court (Amtsgericht) Darmstadt<br />
+          Registration number: VR 84172
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const btnDe = document.getElementById("btn-de");
+      const btnEn = document.getElementById("btn-en");
+      const blocks = Array.from(document.querySelectorAll("[data-lang]"));
+
+      function setLang(lang) {
+        localStorage.setItem("lang", lang);
+        document.documentElement.lang = lang === "en" ? "en" : "de";
+
+        blocks.forEach(el => {
+          const isMatch = el.getAttribute("data-lang") === lang;
+          if (isMatch) el.removeAttribute("hidden");
+          else el.setAttribute("hidden", "");
+        });
+
+        btnDe.setAttribute("aria-pressed", String(lang === "de"));
+        btnEn.setAttribute("aria-pressed", String(lang === "en"));
+      }
+
+      function getInitialLang() {
+        const urlLang = new URLSearchParams(location.search).get("lang");
+        if (urlLang === "de" || urlLang === "en") return urlLang;
+        const saved = localStorage.getItem("lang");
+        if (saved === "de" || saved === "en") return saved;
+        return (navigator.language || "").toLowerCase().startsWith("de") ? "de" : "en";
+      }
+
+      btnDe.addEventListener("click", () => setLang("de"));
+      btnEn.addEventListener("click", () => setLang("en"));
+      setLang(getInitialLang());
+    })();
+  </script>
+</body>
+</html>
