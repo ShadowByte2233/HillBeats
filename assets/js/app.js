@@ -147,7 +147,8 @@ function applyLanguage(lang) {
   });
 
   // Show/hide bilingual blocks (used on impressum page)
-  document.querySelectorAll('main [data-lang], .page-wrap [data-lang]').forEach(el => {
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    if (el.closest('#lang-list')) return; // skip the language switcher options
     if (el.getAttribute('data-lang') === lang) el.removeAttribute('hidden');
     else el.setAttribute('hidden', '');
   });
