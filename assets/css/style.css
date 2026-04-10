@@ -17,6 +17,11 @@
   --radius:             8px;
   --transition:         0.3s ease;
   --font:               'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* Neon red hover effect */
+  --neon-red:           #ff2b2b;
+  --neon-red-soft:      rgba(255, 43, 43, 0.55);
+  --neon-red-glow:      rgba(255, 43, 43, 0.35);
+  --neon-outline-r:     10px;
 }
 
 /* =========================================================
@@ -603,6 +608,134 @@ footer {
 .reveal:nth-child(4) { transition-delay: 0.3s; }
 
 /* =========================================================
+   NEON RED HOVER / FOCUS EFFECT
+   Drawn rotating outline + glow for all clickable elements.
+   Animation runs exactly 1 rotation on hover then holds;
+   restarts reliably on each new hover because animation is
+   removed when the element is not hovered.
+   ========================================================= */
+
+/* Position context so the ::after outline can be placed
+   outside the element with inset: -4px                    */
+a,
+button,
+.btn,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Drawn outline — sits outside the element via inset       */
+a::after,
+button::after,
+.btn::after,
+[role="button"]::after,
+input[type="button"]::after,
+input[type="submit"]::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--neon-outline-r);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--neon-red) 60deg,
+    rgba(255, 120, 120, 0.9) 120deg,
+    var(--neon-red) 200deg,
+    transparent 280deg,
+    transparent 360deg
+  );
+  /* Show only a 2 px border strip — hide interior fill     */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 2px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Glow box-shadow on hover / focus-visible                 */
+a:hover,
+a:focus-visible,
+button:hover,
+button:focus-visible,
+.btn:hover,
+.btn:focus-visible,
+[role="button"]:hover,
+[role="button"]:focus-visible,
+input[type="button"]:hover,
+input[type="button"]:focus-visible,
+input[type="submit"]:hover,
+input[type="submit"]:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--neon-red-soft),
+    0 0 18px var(--neon-red-glow),
+    0 0 36px rgba(255, 43, 43, 0.18);
+}
+
+/* Show + animate outline: 1 rotation, stop at final frame */
+a:hover::after,
+a:focus-visible::after,
+button:hover::after,
+button:focus-visible::after,
+.btn:hover::after,
+.btn:focus-visible::after,
+[role="button"]:hover::after,
+[role="button"]:focus-visible::after,
+input[type="button"]:hover::after,
+input[type="button"]:focus-visible::after,
+input[type="submit"]:hover::after,
+input[type="submit"]:focus-visible::after {
+  opacity: 1;
+  animation: neon-draw 900ms linear 1 forwards;
+}
+
+@keyframes neon-draw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   NAVIGATION extra underline / shadow on hover / focus
+   ========================================================= */
+.nav-links a,
+.footer-nav a {
+  border-radius: var(--neon-outline-r);
+}
+
+/* Neon bar that slides in under nav links                  */
+.nav-links a::before,
+.footer-nav a::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--neon-red);
+  box-shadow: 0 0 8px var(--neon-red), 0 0 16px var(--neon-red-glow);
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition: opacity 200ms ease, transform 200ms ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.nav-links a:hover::before,
+.nav-links a:focus-visible::before,
+.footer-nav a:hover::before,
+.footer-nav a:focus-visible::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* =========================================================
    PAGE ENTER ANIMATION (global, all pages)
    Only active when JS is available (.js on <html>).
    Falls back to fully visible if JS fails.
@@ -633,5 +766,21 @@ html.js body.page-enter.page-enter--ready {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  /* Neon outline: stop rotation but keep outline + glow visible */
+  a:hover::after, a:focus-visible::after,
+  button:hover::after, button:focus-visible::after,
+  .btn:hover::after, .btn:focus-visible::after,
+  [role="button"]:hover::after, [role="button"]:focus-visible::after,
+  input[type="button"]:hover::after, input[type="button"]:focus-visible::after,
+  input[type="submit"]:hover::after, input[type="submit"]:focus-visible::after {
+    animation: none;
+    opacity: 1;
+  }
+  /* Nav underline: skip slide transition */
+  .nav-links a::before,
+  .footer-nav a::before {
+    transition: none;
+    transform: scaleX(1);
   }
 }
