@@ -297,32 +297,6 @@ function initScrollReveal() {
   elements.forEach(el => observer.observe(el));
 }
 
-// ============================================================
-// Newsletter feedback
-// ============================================================
-function initNewsletter() {
-  const form = document.querySelector('.newsletter-form');
-  if (!form) return;
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const input = form.querySelector('.nl-input');
-    if (!input || !input.value) return;
-
-    const lang = localStorage.getItem('hillbeats-lang') || 'de';
-    const msg  = lang === 'de'
-      ? 'Danke! Du bist angemeldet.'
-      : 'Thank you! You are subscribed.';
-
-    const feedback = document.createElement('p');
-    feedback.textContent = msg;
-    feedback.style.cssText = 'color:#c9a74d;margin-top:1rem;font-weight:600;';
-    feedback.setAttribute('role', 'status');
-    form.after(feedback);
-    form.reset();
-    setTimeout(() => feedback.remove(), 4000);
-  });
-}
 
 // ============================================================
 // Smooth scroll (Safari polyfill)
